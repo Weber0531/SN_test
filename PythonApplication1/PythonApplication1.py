@@ -1,22 +1,4 @@
-﻿sn = input("Please input sn, length limit is 18: ")
-while len(sn) != 18 or not sn.isalnum():
-    print(f"this is your input: {sn}, the length is not equal 18 or include other character.")
-    sn = input("please input again: ")
-
-line = input("Please input line, if you don't input, default value is 7G23: ")
-if not line:
-    line = "7G23"
-
-
-station = input("Please input station, if you don't input, default value is 777: ")
-if not station:
-    station = "777"
-
-print("\nSN :",sn)
-print("Line :",line)
-print("station :",station)
-
-from genericpath import exists
+﻿# from genericpath import exists
 import time
 import os
 import csv
@@ -67,7 +49,7 @@ class FileChangeHandler(FileSystemEventHandler):
             print(f"\n檔案已更新: {self.file_path}")
             new_content = self.read_file()
             
-            print("\n檔案內容如下 :\n", new_content)
+            print(f"\n檔案內容如下 :\n{new_content}")
 
             # 檢查改動部分
             if new_content != self.last_content:
@@ -94,7 +76,7 @@ def monitor_file(file_path, sn, output_directory):
     event_handler = FileChangeHandler(file_path, sn, output_directory, observer)
     observer.schedule(event_handler, directory, recursive=False)
     observer.start()
-    print(f"開始監控檔案: {file_path}")
+    print(f"\n開始監控檔案: {file_path}")
 
     while True:
         if event_handler.file_modified:
@@ -107,8 +89,26 @@ def monitor_file(file_path, sn, output_directory):
     #         if event_handler.file_modified:
     #             break
     #         time.sleep(0.1)
+
     # 等待監控結束
     observer.join()
+
+sn = input("Please input sn, length limit is 18: ")
+while len(sn) != 18 or not sn.isalnum():
+    print(f"this is your input: {sn}, the length is not equal 18 or include other character.")
+    sn = input("please input again: ")
+
+line = input("Please input line, if you don't input, default value is 7G23: ")
+if not line:
+    line = "7G23"
+
+station = input("Please input station, if you don't input, default value is 777: ")
+if not station:
+    station = "777"
+
+print("\nSN :",sn)
+print("Line :",line)
+print("STATION :",station)
 
 # 指定要監控的檔案
 file_path = "C:\\Users\\amy91\\Desktop\\code\\PythonApplication1\\PythonApplication1\\Result.txt"
