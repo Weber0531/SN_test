@@ -106,9 +106,11 @@ station = input("Please input station, if you don't input, default value is 777:
 if not station:
     station = "777"
 
+ip = "10.228.24.38"
 print("\nSN :",sn)
 print("Line :",line)
 print("STATION :",station)
+print("IP :",ip)
 
 # 指定要監控的檔案
 file_path = "C:\\Users\\amy91\\Desktop\\code\\PythonApplication1\\PythonApplication1\\Result.txt"
